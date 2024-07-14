@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chessboard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .board {
+        display: inline-block;
+        border-spacing: 0;
+    }
+    .row {
+        display: flex;
+    }
+    .cell {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+    .white {
+        background-color:white;
+    }
+    .black {
+        background-color: black;
+    }
+</style>
+</head>
+<body>
+    <h2>Chessboard</h2>
+    <div class="board" id="chessboard"></div>
+
+    <script>
+        function createChessboard(rows, cols) {
+            var board = document.getElementById('chessboard');
+            board.innerHTML = '';
+
+            for (var i = 0; i < rows; i++) {
+                var row = document.createElement('div');
+                row.classList.add('row');
+
+                for (var j = 0; j < cols; j++) {
+                    var cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    
+                    
+                    if ((i + j) % 2 === 0) {
+                        cell.classList.add('white');
+                    } else {
+                        cell.classList.add('black');
+                    }
+
+                    
+                    if (j === 0) {
+                        cell.textContent = String.fromCharCode(65 + i); 
+                        cell.style.lineHeight = '25px';
+                    } else if (i === rows - 1) {
+                        cell.textContent = j + 1; 
+                        cell.style.lineHeight = '25px';
+                    }
+
+                    row.appendChild(cell);
+                }
+
+                board.appendChild(row);
+            }
+        }
+
+       
+        createChessboard(8, 8);
+    </script>
+</body>
+</html>
